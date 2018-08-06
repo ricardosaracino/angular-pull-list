@@ -1,0 +1,13 @@
+mat-card {
+  max-width: 150px;
+  display: inline-block;
+  margin: 5px;
+}
+
+img {
+  height: 300px;
+}
+
+mat-card-header {
+  height: 100px;
+}

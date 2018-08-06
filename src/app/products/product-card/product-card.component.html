@@ -1,0 +1,14 @@
+<a routerLink="/product/{{product.id}}">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product?.company.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image
+         src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
+    <mat-card-content>
+      <div style="float: left;">{{product.customerCost|currency}}</div>
+      <div style="float: right;">{{product.releasedAt|date}}</div>
+    </mat-card-content>
+  </mat-card>
+</a>
