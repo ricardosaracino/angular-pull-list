@@ -6,7 +6,7 @@ export class ApiResponse {
 
   readonly status: string;
 
-  readonly data?: ApiResponseData | object | null;
+  readonly data?: ApiResponseData | any;
 
   readonly message?: string;
 }

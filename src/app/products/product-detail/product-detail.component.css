@@ -1,0 +1,22 @@
+
+img {
+  height: 400px;
+  max-width: 400px;
+  object-fit: cover;
+}
+
+.product-info div {
+  padding: 5px;
+}
+
+.product-info .name {
+  font-weight: bold;
+}
+
+.product-info .detail {
+}
+
+.product-info .description {
+  width: 400px;
+  font-size: 14px;
+}

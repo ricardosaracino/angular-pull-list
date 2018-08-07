@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NavigationComponent} from './shared/navigation/navigation.component';
@@ -56,6 +57,8 @@ import {ProductDetailComponent} from './products/product-detail/product-detail.c
     LayoutModule,
     HttpClientModule,
 
+    FlexLayoutModule,
+
     MatCardModule,
     MatButtonModule,
     MatIconModule,
@@ -68,11 +71,12 @@ import {ProductDetailComponent} from './products/product-detail/product-detail.c
     MatTableModule,
     MatToolbarModule,
   ],
+
   providers: [
     LoggerService,
     MessageService,
     ProductService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

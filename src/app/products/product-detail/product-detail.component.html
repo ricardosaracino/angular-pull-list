@@ -1,3 +1,28 @@
-<p>
-  product-detail works!
-</p>
+<div *ngIf="product" fxLayout="row" style="padding: 10px">
+
+  <div fxFlex>
+    <img mat-card-image
+         src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
+  </div>
+
+
+  <div fxFill="" class="product-info">
+    <div fxLayout="column">
+
+      <div fxFill="fill">
+        <div class="name">{{product.name}}</div>
+        <div class="detail">{{product.releasedAt|date}}</div>
+        <div class="detail">{{product.customerCost|currency}}</div>
+        <div class="detail">{{product.UPC}}</div>
+        <div class="description">
+          {{product.description}}
+        </div>
+      </div>
+
+      <div fxFill="auto">
+        <button mat-button="">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+

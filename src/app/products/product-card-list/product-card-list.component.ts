@@ -22,7 +22,7 @@ export class ProductCardListComponent implements OnInit {
 
     // TODO some issues with mapping to ApiResponseData
 
-    if (data instanceof ApiResponseData || data instanceof Object) { // error returns []
+    if ((data instanceof ApiResponseData) || (data instanceof Object)) { // TODO error returns []
 
       this.products = this.products.concat(data.results);
 
@@ -30,7 +30,7 @@ export class ProductCardListComponent implements OnInit {
     }
   };
 
-  constructor(private productService: ProductService) {
+  constructor(private service: ProductService) {
     this.nextOffset = 0;
   }
 
@@ -39,6 +39,6 @@ export class ProductCardListComponent implements OnInit {
   }
 
   getArrivingNextWeek(): void {
-    this.productService.getArrivingNextWeek(this.nextOffset, this.pageCount).subscribe(this.processData);
+    this.service.getArrivingNextWeek(this.nextOffset, this.pageCount).subscribe(this.processData);
   }
 }

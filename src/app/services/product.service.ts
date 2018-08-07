@@ -6,7 +6,8 @@ import {catchError, map} from 'rxjs/internal/operators';
 
 import {MessageService} from './message.service';
 import {ApiResponse} from '../models/ApiResponse';
-import {ApiResponseData} from "../models/ApiResponseData";
+import {ApiResponseData} from '../models/ApiResponseData';
+import {Product} from '../models/Product';
 
 @Injectable()
 export class ProductService {
@@ -18,9 +19,30 @@ export class ProductService {
   }
 
   /**
-   * @returns {Observable<any>}
+   * @param {number | string} id
+   * @returns {Observable<Product>}
    */
-  public getArrivingNextWeek(offset: number, limit: number): Observable<any> {
+  public getProduct(id: number | string): Observable<Product> {
+
+    return this.http.get<Product>(`${this.productsUrl}${id}`).pipe(
+      map((response: ApiResponse) => {
+
+        if (response.data && response.data.results) { // TODO
+          return response.data.results.shift();
+        }
+      }),
+
+      catchError(this.handleError(`Getting Product ${id}`, []))
+    );
+  }
+
+  /**
+   *
+   * @param {number} offset
+   * @param {number} limit
+   * @returns {Observable<ApiResponseData>}
+   */
+  public getArrivingNextWeek(offset: number, limit: number): Observable<ApiResponseData> {
 
     const today = new Date();
 
@@ -28,7 +50,7 @@ export class ProductService {
     const today_formatted = today.toISOString().substring(0, 10);
 
     const params = new HttpParams()
-      // .set('dateRange', `${today_formatted},${nextweek_formatted}`) // 2013-01-01,2013-01-02
+    // .set('dateRange', `${today_formatted},${nextweek_formatted}`) // 2013-01-01,2013-01-02
       .set('offset', `${offset}`)
       .set('limit', `${limit}`);
 
