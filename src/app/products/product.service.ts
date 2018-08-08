@@ -4,7 +4,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
-import {MessageService} from './message.service';
+import {MessageService} from '../services/message.service';
 import {ApiResponse} from '../models/ApiResponse';
 import {ApiResponseData} from '../models/ApiResponseData';
 import {Product} from '../models/Product';
@@ -26,12 +26,10 @@ export class ProductService {
 
     return this.http.get<Product>(`${this.productsUrl}${id}`).pipe(
       map((response: ApiResponse) => {
-
-        if (response.data && response.data.results) { // TODO
+        if (response.data && response.data.results && response.data.results instanceof Array) {
           return response.data.results.shift();
         }
       }),
-
       catchError(this.handleError(`Getting Product ${id}`, []))
     );
   }
@@ -58,7 +56,6 @@ export class ProductService {
       map((response: ApiResponse) => {
         return response.data;
       }),
-
       catchError(this.handleError(`Getting Arriving Next Week`, []))
     );
   }

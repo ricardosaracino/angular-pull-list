@@ -1,7 +1,11 @@
 mat-card {
-  max-width: 150px;
+  max-width: 150px; /*  todo dynamically calculate based on screen width */
   display: inline-block;
   margin: 5px;
+}
+
+.card-sm {
+  max-width: 160px;
 }
 
 img {

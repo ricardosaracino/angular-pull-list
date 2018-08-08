@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {ProductService} from '../../services/product.service';
+import {ProductService} from '../product.service';
 import {ApiResponseData} from '../../models/ApiResponseData';
 import {Product} from '../../models/Product';
 
@@ -22,10 +22,8 @@ export class ProductCardListComponent implements OnInit {
 
     // TODO some issues with mapping to ApiResponseData
 
-    if ((data instanceof ApiResponseData) || (data instanceof Object)) { // TODO error returns []
-
+    if ((data instanceof ApiResponseData || Object)) { // (data instanceof ApiResponseData) || TODO error returns []
       this.products = this.products.concat(data.results);
-
       this.nextOffset = data.offset + data.limit;
     }
   };

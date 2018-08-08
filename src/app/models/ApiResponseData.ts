@@ -4,5 +4,5 @@ export class ApiResponseData {
   readonly total: number;  // The total number of resources available given the current filter set.
   readonly count: number;  // The total number of results returned by this call.
 
-  readonly results: any | undefined;
+  readonly results: Array<any>;
 }

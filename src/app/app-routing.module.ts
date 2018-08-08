@@ -19,11 +19,7 @@ const routes: Routes = [
    {path: 'hero-detail/:id', component: HeroDetailComponent, canActivate: [AuthenticationGuard], data: {roles: ['admin']}},
    {path: 'hero-create', component: HeroCreateComponent, canActivate: [AuthenticationGuard], data: {roles: ['admin']}}*/
 
-  {path: 'new-last-week', component: ProductCardListComponent},
-  {path: 'arriving-this-week', component: ProductCardListComponent},
-  {path: 'coming-next-week', component: ProductCardListComponent},
 
-  {path: 'product/:id', component: ProductDetailComponent},
 
   {path: '**', component: PageNotFoundComponent}
 ];

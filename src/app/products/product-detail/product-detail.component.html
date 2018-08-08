@@ -1,12 +1,12 @@
-<div *ngIf="product" fxLayout="row" style="padding: 10px">
+<div *ngIf="product" style="padding: 10px"
+     fxFlex fxLayout="row" fxLayout.xs="column" fxLayout.sm="column"
+     class="coloredContainerX box">
 
   <div fxFlex>
-    <img mat-card-image
-         src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
+    <img src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
   </div>
 
-
-  <div fxFill="" class="product-info">
+  <div fxFlex="fxFill" class="product-info">
     <div fxLayout="column">
 
       <div fxFill="fill">
