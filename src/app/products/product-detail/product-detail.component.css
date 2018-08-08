@@ -4,8 +4,13 @@ img {
   object-fit: cover;
 }
 
-.product-info div {
-  padding: 5px;
+.product-img {
+  padding-right: 10px;
+  padding-bottom: 5px;
+}
+
+.product-info div:not(:first-child) {
+  padding: 5px 0;
 }
 
 .product-info .name {

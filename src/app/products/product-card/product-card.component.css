@@ -1,11 +1,12 @@
 mat-card {
-  max-width: 150px; /*  todo dynamically calculate based on screen width */
+  max-width: 150px;
+  min-width: 110px;
   display: inline-block;
   margin: 5px;
 }
 
 .card-sm {
-  max-width: 160px;
+  max-width: calc(50% - 43px);
 }
 
 img {
