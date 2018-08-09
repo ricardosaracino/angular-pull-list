@@ -17,22 +17,23 @@ export class AuthInterceptor implements HttpInterceptor {
 
     const authReq = request.clone({withCredentials: true});
 
-    return next.handle(authReq).pipe(
-      catchError((error: HttpErrorResponse | any) => {
+    return next.handle(authReq)
+      .pipe(
+        catchError((error: HttpErrorResponse | any) => {
 
-        if (error.status === 401) {
-          // session expired (or not logged in ?)
-          console.log('Status 401 unauthorized');
+          if (error.status === 401) {
+            // session expired (or not logged in ?)
+            console.log('Status 401 unauthorized');
 
-          // clears local storage, redirects
-          // this.authService.invalidate();
+            // clears local storage, redirects
+            // this.authService.invalidate();
 
-        } else if (error.status === 403) {
-          console.log('Status 403 forbidden');
-        }
+          } else if (error.status === 403) {
+            console.log('Status 403 forbidden');
+          }
 
-        return throwError(error);
-      })
-    );
+          return throwError(error);
+        })
+      );
   }
 }

@@ -16,12 +16,14 @@ import {ProductModule} from './products/product.module';
 import {SnackBarComponent} from './shared/snack-bar/snack-bar.component';
 import {NavigationComponent} from './shared/navigation/navigation.component';
 import {ProductNavComponent} from './products/product-nav/product-nav.component';
+import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component';
+import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 
+import {LoaderService} from './services/loader.service';
 import {LoggerService} from './services/logger.service';
 import {MessageService} from './services/message.service';
 
 import {httpInterceptorProviders} from './http-interceptors/index';
-import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
     ProductNavComponent,
     SnackBarComponent,
     PageNotFoundComponent,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
     AppRoutingModule,
   ],
   providers: [
+    LoaderService,
     LoggerService,
     MessageService,
     httpInterceptorProviders,
