@@ -13,19 +13,18 @@ export class LoadingInterceptor implements HttpInterceptor {
   }
 
   /**
-   *
    * @param {HttpRequest<any>} request
    * @param {HttpHandler} next
    * @returns {Observable<HttpEvent<any>>}
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.loader.start();
+    this.loader.increase();
 
     return next.handle(request)
       .pipe(
         finalize(() => {
-          this.loader.complete();
+          this.loader.decrease();
         })
       );
   }

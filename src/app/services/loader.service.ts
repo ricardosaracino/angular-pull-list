@@ -1,29 +1,45 @@
 import {Injectable} from '@angular/core';
 
-import {Observable} from 'rxjs/index';
+import {ReplaySubject} from 'rxjs/index';
 
 @Injectable()
 export class LoaderService {
 
-  loading$: Observable<boolean> = new Observable();
+  // https://github.com/mpalourdio/ng-http-loader/blob/master/src/lib/services/pending-interceptor.service.ts
+  // https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/subjects/replaysubject.md
 
-  private count = 0;
+  private requestsRunning = 0;
+
+  pendingRequestsStatus: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor() {
-    this.loading$ = false;
   }
 
-  start() {
-    console.log('start', this.count);
-    this.count++;
-    this.loading$ = this.count > 0;
-    console.log('start post', this.count);
+  get pendingRequestsStatus$(): Observable<boolean> {
+    return this.pendingRequestsStatus.asObservable();
   }
 
-  complete() {
-    console.log('complete', this.count);
-    this.count--;
-    this.loading$ = this.count > 0;
-    console.log('complete post', this.count);
+  public list(): number {
+
+    return this.requestsRunning;
+
+  }
+
+  public increase(): void {
+    this.requestsRunning++;
+
+    if (1 === this.requestsRunning) {
+      this.pendingRequestsStatus.next(true);
+    }
+  }
+
+  public decrease() {
+    if (this.requestsRunning > 0) {
+      this.requestsRunning--;
+
+      if (0 === this.requestsRunning) {
+        this.pendingRequestsStatus.next(false);
+      }
+    }
   }
 }

@@ -1,2 +1,2 @@
-<mat-progress-bar mode="indeterminate" [ngStyle]="!loadingService.loading$ ? {'display': 'none'} : {'display': 'block'}"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" [ngStyle]="(loadingService.pendingRequestsStatus$ | async) ? {'display': 'block'} : {'display': 'none'}"></mat-progress-bar>
 
