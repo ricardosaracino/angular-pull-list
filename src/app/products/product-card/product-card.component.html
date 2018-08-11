@@ -6,8 +6,16 @@
     </mat-card-header>
     <img mat-card-image
          src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
+
     <mat-card-content>
-      <div style="float: left;">{{product.customerCost|currency}}</div>
+      <div style="float: left;">
+        <span *ngIf="!product.customerDiscountPrice; else discount">
+          {{product.customerPrice|currency}}
+        </span>
+        <ng-template #discount>
+          <span class="text-strike-through">{{product.customerPrice|currency}}</span> {{product.customerDiscountPrice|currency}}
+        </ng-template>
+      </div>
       <div style="float: right;">{{product.releasedAt|date}}</div>
     </mat-card-content>
   </mat-card>

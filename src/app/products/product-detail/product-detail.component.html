@@ -1,28 +1,62 @@
 <div *ngIf="product" style="padding: 10px"
-     fxFlex fxLayout="row" fxLayout.xs="column" fxLayout.sm="column"
-     class="coloredContainerX box">
+     fxFlex fxLayout="row"
+     fxLayoutAlign="start none"
+     fxLayout.xs="column">
 
-  <div fxFlex class="product-img">
+  <div class="product-img" [ngClass.xs]="{'product-img-xs': 'product-img-xs'}" fxFlexOrder="0" >
     <img src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
   </div>
 
-  <div fxFlex="fxFill" class="product-info">
+  <div class="product-info-details" [ngClass.xs]="{'product-info-details-xs': 'product-info-details-xs'}" fxFlexOrder="2" fxFlexOrder.xs="2">
     <div fxLayout="column">
-
       <div fxFill="fill">
-        <div class="name">{{product.name}}</div>
-        <div class="detail">{{product.releasedAt|date}}</div>
-        <div class="detail">{{product.customerCost|currency}}</div>
-        <div class="detail">{{product.UPC}}</div>
-        <div class="description">
+        <div class="font-weight-bold">{{product.name}}</div>
+        <div>{{product.releasedAt|date}}</div>
+        <div>{{product.UPC}}</div>
+        <div class="font-minus-1">
           {{product.description}}
         </div>
       </div>
+    </div>
+  </div>
 
-      <div fxFill="auto">
-        <button mat-button="">Add To Cart</button>
+  <div class="product-info-order" [ngClass.xs]="{'product-info-order-xs': 'product-info-order-xs'}" fxFlexOrder="2" fxFlexOrder.xs="1">
+
+    <div fxLayout="column">
+
+      <div class="text-align-center">
+
+        <div class="detail" *ngIf="!product.customerDiscountPrice; else discount">
+          {{product.customerPrice|currency}}
+        </div>
+
+        <ng-template #discount>
+          <div class="detail">
+            <ng-container i18n>Was:</ng-container>
+            <span class="text-strike-through">{{product.customerPrice|currency}}</span>
+          </div>
+
+          <div class="detail">
+            <ng-container i18n>Your Price:</ng-container>
+            {{product.customerDiscountPrice|currency}}
+          </div>
+
+          <div class="detail font-minus-1 font-weight-lighter">
+            <ng-container i18n>You Save:</ng-container>
+            {{product.customerDiscount}}%
+          </div>
+
+          <div class="detail" *ngIf="product.deadlineAt;">
+            <ng-container i18n>Pre-Order Deadline:</ng-container>
+            {{product.deadlineAt|date}}
+          </div>
+
+          <button mat-flat-button color="primary">Add To Cart</button>
+
+        </ng-template>
       </div>
     </div>
   </div>
+
 </div>
 

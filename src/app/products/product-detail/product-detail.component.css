@@ -9,18 +9,43 @@ img {
   padding-bottom: 5px;
 }
 
+.product-img-xs{
+  width: 100%;
+  text-align: center;
+}
+
+
 .product-info div:not(:first-child) {
   padding: 5px 0;
 }
 
-.product-info .name {
-  font-weight: bold;
-}
 
-.product-info .detail {
-}
 
-.product-info .description {
+
+.product-info-details {
   max-width: 390px;
-  font-size: 14px;
+  min-width: 300px;
+  line-height:1.5em;
 }
+
+
+.product-info-details-xs {
+  max-width: 100%;
+  min-width: 100%;
+  padding-top: 10px;
+}
+
+
+
+
+.product-info-order
+{
+  width: 200px;
+  line-height:1.5em;
+}
+
+.product-info-order-xs{
+  width: 100%;
+  padding-top: 5px;
+}
+

@@ -7,8 +7,11 @@ export class Product {
   details: string;
   UPC: string;
   imageUrl: string;
-  customerCost: string;
-  vendorCost: string;
+  customerPrice: number;
+  customerDiscount: number;
+  customerDiscountPrice: number;
+  vendorPrice: number;
   releasedAt: string;
+  deadlineAt: string;
   company?: Company;
 }

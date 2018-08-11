@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {ReplaySubject} from 'rxjs/index';
+import {Observable, ReplaySubject} from 'rxjs/index';
 
 @Injectable()
 export class LoaderService {
