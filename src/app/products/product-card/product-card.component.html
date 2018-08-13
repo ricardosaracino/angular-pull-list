@@ -1,4 +1,4 @@
-<mat-card ngClass.xs="card-xs" (click)="goProductDetails()">
+<mat-card *ngIf="product" ngClass.xs="card-xs" (click)="goProductDetails()">
   <mat-card-header>
     <mat-card-title>{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product?.company.name}}</mat-card-subtitle>

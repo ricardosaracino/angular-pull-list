@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+/** TODO REMOVE */
+
 @Component({
   selector: 'app-product-nav',
   templateUrl: './product-nav.component.html',
@@ -11,5 +13,4 @@ export class ProductNavComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
