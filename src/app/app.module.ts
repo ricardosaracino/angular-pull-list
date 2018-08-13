@@ -19,11 +19,13 @@ import {ProductNavComponent} from './products/product-nav/product-nav.component'
 import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 
+import {CartService} from './services/cart.service';
 import {LoaderService} from './services/loader.service';
 import {LoggerService} from './services/logger.service';
 import {MessageService} from './services/message.service';
 
 import {httpInterceptorProviders} from './http-interceptors/index';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {httpInterceptorProviders} from './http-interceptors/index';
     SnackBarComponent,
     PageNotFoundComponent,
     ProgressBarComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import {httpInterceptorProviders} from './http-interceptors/index';
     AppRoutingModule,
   ],
   providers: [
+    CartService,
     LoaderService,
     LoggerService,
     MessageService,

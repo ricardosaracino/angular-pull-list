@@ -1,29 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
 
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+mark {
+  background-color: rgba(233, 30, 99, .2);
+  box-shadow: 0 0 10px 5px rgba(233, 30, 99, .2);
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 20px 0;
+}
 
 
 .text-align-center {
   text-align: center;
 }
-
-.text-strike-through{
-  text-decoration: line-through;
+.text-align-left {
+  text-align: left
+}
+.text-align-right {
+  text-align: right;
 }
 
-.font-weight-bold {
-  font-weight: bold;
+.text-strike-through {
+  text-decoration: line-through;
 }
 
 .font-minus-1 {
   font-size: .9em;
 }
 
-.font-weight-lighter {
-  font-weight: lighter;
+
+.font-weight-100 {
+  font-weight: 100;
+}
+
+.font-weight-200 {
+  font-weight: 200;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
 }

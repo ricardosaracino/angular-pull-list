@@ -1,4 +1,6 @@
 import {Company} from './Comany';
+import {ProductType} from './ProductType';
+import {UserPurchase} from './UserPurchase';
 
 export class Product {
   id: number;
@@ -13,5 +15,8 @@ export class Product {
   vendorPrice: number;
   releasedAt: string;
   deadlineAt: string;
+
+  productType: ProductType;
   company?: Company;
+  userPurchase?: UserPurchase;
 }

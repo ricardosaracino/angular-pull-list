@@ -3,9 +3,10 @@ mat-card {
   min-width: 110px;
   display: inline-block;
   margin: 5px;
+  cursor: pointer;
 }
 
-.card-sm {
+mat-card.card-xs {
   max-width: calc(50% - 43px);
 }
 

@@ -1,22 +1,25 @@
-<a routerLink="/product/{{product.id}}">
-  <mat-card ngClass.xs="card-sm">
-    <mat-card-header>
-      <mat-card-title>{{product.name}}</mat-card-title>
-      <mat-card-subtitle>{{product?.company.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image
-         src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
+<mat-card ngClass.xs="card-xs" (click)="goProductDetails()">
+  <mat-card-header>
+    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-subtitle>{{product?.company.name}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image
+       src="{{product.imageUrl || 'https://d2lzb5v10mb0lj.cloudfront.net/covers_tfaw/200/no/nocover.jpg'}}">
 
-    <mat-card-content>
-      <div style="float: left;">
+  <mat-card-content>
+    <div style="float: left;">
         <span *ngIf="!product.customerDiscountPrice; else discount">
           {{product.customerPrice|currency}}
         </span>
-        <ng-template #discount>
-          <span class="text-strike-through">{{product.customerPrice|currency}}</span> {{product.customerDiscountPrice|currency}}
-        </ng-template>
-      </div>
-      <div style="float: right;">{{product.releasedAt|date}}</div>
-    </mat-card-content>
-  </mat-card>
-</a>
+      <ng-template #discount>
+        <span class="text-strike-through">{{product.customerPrice|currency}}</span>
+        {{product.customerDiscountPrice|currency}}
+      </ng-template>
+    </div>
+    <div style="float: right;">{{product.releasedAt|date}}</div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button i18n (click)="addToCard($event);">Add to Cart</button>
+  </mat-card-actions>
+</mat-card>

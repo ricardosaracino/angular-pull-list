@@ -1,23 +1,10 @@
 import {NgModule} from '@angular/core';
 
 import {
+  MatBadgeModule,
   MatButtonModule,
   MatCardModule,
-  MatIconModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatSidenavModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule
-} from '@angular/material';
-
-const MATERIAL_MODULES = [
-  MatCardModule,
-  MatButtonModule,
+  MatCheckboxModule,
   MatIconModule,
   MatListModule,
   MatPaginatorModule,
@@ -28,6 +15,25 @@ const MATERIAL_MODULES = [
   MatTabsModule,
   MatTableModule,
   MatToolbarModule,
+  MatTooltipModule
+} from '@angular/material';
+
+const MATERIAL_MODULES = [
+  MatBadgeModule,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTabsModule,
+  MatTableModule,
+  MatToolbarModule,
+  MatTooltipModule
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {Product} from '../../models/Product';
+import {CartService} from '../../services/cart.service';
+import {MessageService} from '../../services/message.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,7 +14,7 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private cart: CartService, private message: MessageService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -20,5 +22,10 @@ export class ProductDetailComponent implements OnInit {
       .subscribe((data: { product: Product }) => {
         this.product = data.product;
       });
+  }
+
+  public addToCart() {
+    this.message.sendToFlash('Cart Updated');
+    return this.cart.addToCart(this.product);
   }
 }

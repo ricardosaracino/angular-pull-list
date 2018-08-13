@@ -24,7 +24,6 @@ export class ProductCardListComponent implements OnInit {
 
     if ((data instanceof ApiResponseData || Object)) { // (data instanceof ApiResponseData) || TODO error returns []
       this.products = this.products.concat(data.results);
-      this.nextOffset = data.offset + data.limit;
     }
   };
 
@@ -37,6 +36,9 @@ export class ProductCardListComponent implements OnInit {
   }
 
   getArrivingNextWeek(): void {
+
     this.service.getArrivingNextWeek(this.nextOffset, this.pageCount).subscribe(this.processData);
+
+    this.nextOffset = this.nextOffset +this.pageCount;
   }
 }
