@@ -51,15 +51,34 @@
 
       <span style="padding-right: 5px">
 
-        <button *ngIf="auth.isAuthenticated; else doLogin" mat-icon-button>
-          <mat-icon>
-            account_circle
-          </mat-icon>
-        </button>
+        <ng-container *ngIf="! auth.isAuthenticated; else doAppMenu">
+          <button mat-flat-button color="primary" routerLink="/login">
+            <span i18n>LOGIN</span>
+          </button>
+        </ng-container>
 
-        <ng-template #doLogin>
-          <button mat-flat-button color="primary" routerLink="/login" i18n>LOGIN</button>
+        <ng-template #doAppMenu>
+
+          <button mat-icon-button [matMenuTriggerFor]="appMenu">
+            <mat-icon>
+              account_circle
+            </mat-icon>
+          </button>
+
+          <mat-menu #appMenu>
+            <button mat-menu-item>
+              <span i18n>Order History</span>
+            </button>
+            <button mat-menu-item>
+              <span i18n>Pending Pre Orders</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="auth.logout()">
+              <span i18n>Logout</span>
+            </button>
+          </mat-menu>
         </ng-template>
+
       </span>
     </mat-toolbar>
     <router-outlet></router-outlet>
