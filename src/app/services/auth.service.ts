@@ -5,11 +5,11 @@ export class AuthService {
 
   isAuthenticated = false;
 
-  public login(): boolean {
+  public login() {
     this.isAuthenticated = true;
   }
 
-  public logout(): boolean {
+  public logout() {
     this.isAuthenticated = false;
   }
 }
