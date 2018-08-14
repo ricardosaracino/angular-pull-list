@@ -3,7 +3,8 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {CartService} from '../../services/cart.service';
+import {AuthService} from '../../services/auth.service';
+import {CartService} from '../../cart/cart.service';
 
 @Component({
   selector: 'app-navigation',
@@ -17,6 +18,7 @@ export class NavigationComponent {
       map(result => result.matches)
     );
 
-  constructor(public cart: CartService, private breakpointObserver: BreakpointObserver) {
+  constructor(public cart: CartService, public auth: AuthService,
+              private breakpointObserver: BreakpointObserver) {
   }
 }

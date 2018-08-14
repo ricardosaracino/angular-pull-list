@@ -1,13 +1,17 @@
 mat-card {
-  max-width: 180px;
-  min-width: 110px;
+  max-width: 230px;
+  min-width: 230px;
   display: inline-block;
   margin: 5px;
   cursor: pointer;
 }
 
-mat-card.card-xs {
-  max-width: calc(50% - 43px);
+mat-card-title {
+  height: 90px;
+}
+
+mat-card-subtitle {
+  height: 30px;
 }
 
 img {
@@ -15,6 +19,20 @@ img {
   object-fit: cover;
 }
 
-mat-card-header {
-  height: 100px;
+
+mat-card.card-sm {
+  max-width: calc(50% - 10px);
+  min-width: calc(50% - 10px);
 }
+
+
+mat-card.card-xs {
+  max-width: calc(100% - 10px);
+  min-width: calc(100% - 10px);
+}
+
+mat-card.card-xs mat-card-title,
+mat-card.card-xs mat-card-subtitle {
+  height: auto;
+}
+

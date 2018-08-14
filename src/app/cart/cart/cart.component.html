@@ -4,7 +4,7 @@
     <h2 fxFlex i18n>Shopping Cart</h2>
 
     <div fxFlex class="text-align-right">
-      <button mat-button color="primary">Check Out</button>
+      <button mat-button color="primary" routerLink="/checkout">Check Out</button>
     </div>
   </mat-card>
 
@@ -23,15 +23,15 @@
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef i18n>Title</th>
-      <td mat-cell *matCellDef="let product"><a mat-button [routerLink]="['/product', product.id]">{{product.name}}</a>
+      <td mat-cell *matCellDef="let product"><a mat-button class="text-wrap" [routerLink]="['/product', product.id]">{{product.name}}</a>
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <ng-container matColumnDef="customerPrice">
-      <th mat-header-cell *matHeaderCellDef i18n>Price</th>
-      <td mat-cell *matCellDef="let product">{{product.customerPrice | currency}}</td>
-      <td mat-footer-cell *matFooterCellDef class="font-weight-500">{{getCustomerTotal() | currency}}</td>
+      <th mat-header-cell *matHeaderCellDef i18n><div class="price-cell">Price</div></th>
+      <td mat-cell *matCellDef="let product"><div class="price-cell">{{product.customerPrice | currency}}</div></td>
+      <td mat-footer-cell *matFooterCellDef class="font-weight-500"><div class="price-cell">{{getCustomerTotal() | currency}}</div></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

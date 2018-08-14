@@ -27,12 +27,21 @@ export class CartService {
     const lsCart = localStorage.getItem('cartService.products');
 
     if (lsCart) {
-      const cartData = JSON.parse(lsCart);
 
-      this.products = cartData.products;
+      // don't refresh the data if nothing changed
+      if (this.getCartJson() !== lsCart) {
+        const cartData = JSON.parse(lsCart);
 
-      this.cartTotal = cartData.cartTotal;
+        this.products = cartData.products;
+
+        this.cartTotal = cartData.cartTotal;
+      }
     }
+  }
+
+
+  private getCartJson() {
+    return JSON.stringify({products: this.products, cartTotal: this.cartTotal});
   }
 
 
@@ -63,7 +72,7 @@ export class CartService {
 
     this.cartTotal = this.getCartTotal();
 
-    localStorage.setItem('cartService.products', JSON.stringify({products: this.products, cartTotal: this.cartTotal}));
+    localStorage.setItem('cartService.products', this.getCartJson());
   }
 
 
@@ -77,6 +86,6 @@ export class CartService {
       return a.name.localeCompare(b.name);
     });
 
-    localStorage.setItem('cartService.products', JSON.stringify({products: this.products, cartTotal: this.cartTotal}));
+    localStorage.setItem('cartService.products', this.getCartJson());
   }
 }

@@ -11,31 +11,31 @@ import {AppComponent} from './app.component';
 
 import {AppMaterialModule} from './app-material.module';
 import {AppRoutingModule} from './app-routing.module';
+import {CartModule} from './cart/cart.module';
 import {ProductModule} from './products/product.module';
 
 import {SnackBarComponent} from './shared/snack-bar/snack-bar.component';
 import {NavigationComponent} from './shared/navigation/navigation.component';
-import {ProductNavComponent} from './products/product-nav/product-nav.component';
 import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
+import {LoginComponent} from './shared/login/login.component';
 
-import {CartService} from './services/cart.service';
+import {AuthService} from './services/auth.service';
+import {CartService} from './cart/cart.service';
 import {LoaderService} from './services/loader.service';
 import {LoggerService} from './services/logger.service';
 import {MessageService} from './services/message.service';
 
 import {httpInterceptorProviders} from './http-interceptors/index';
-import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    ProductNavComponent,
     SnackBarComponent,
     PageNotFoundComponent,
     ProgressBarComponent,
-    CartComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +47,11 @@ import { CartComponent } from './cart/cart.component';
     AppMaterialModule,
 
     ProductModule, // Order Matters for routing
+    CartModule,
     AppRoutingModule,
   ],
   providers: [
+    AuthService,
     CartService,
     LoaderService,
     LoggerService,

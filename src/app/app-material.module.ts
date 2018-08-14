@@ -5,17 +5,19 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatPaginatorModule,
   MatProgressBarModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatSortModule,
-  MatTabsModule,
   MatTableModule,
+  MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
 } from '@angular/material';
 
 const MATERIAL_MODULES = [
@@ -23,7 +25,9 @@ const MATERIAL_MODULES = [
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatListModule,
   MatPaginatorModule,
   MatProgressBarModule,

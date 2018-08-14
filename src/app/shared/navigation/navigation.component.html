@@ -41,12 +41,25 @@
 
       <span class="mat-toolbar-spacer"></span>
 
-      <span style="padding-right: 5px">
-        <button mat-icon-button matTooltip="Checkout" routerLink="cart">
+      <span style="padding-right: 15px">
+        <button mat-icon-button routerLink="/cart">
           <mat-icon matBadge="{{cart.products.length}}" matBadgeColor="accent">
             shopping_cart
           </mat-icon>
         </button>
+      </span>
+
+      <span style="padding-right: 5px">
+
+        <button *ngIf="auth.isAuthenticated; else doLogin" mat-icon-button>
+          <mat-icon>
+            account_circle
+          </mat-icon>
+        </button>
+
+        <ng-template #doLogin>
+          <button mat-flat-button color="primary" routerLink="/login" i18n>LOGIN</button>
+        </ng-template>
       </span>
     </mat-toolbar>
     <router-outlet></router-outlet>

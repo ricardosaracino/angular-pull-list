@@ -11,7 +11,6 @@ import {ProductDetailComponent} from './product-detail/product-detail.component'
 import {ProductService} from './product.service';
 import {ProductRoutingModule} from './product-routing';
 
-
 @NgModule({
   declarations: [
     ProductCardComponent,

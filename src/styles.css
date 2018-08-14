@@ -1,12 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+* { /* fuck you margins */
+  margin:0 ;
+  box-sizing: border-box;
 }
 
 html, body {
@@ -14,8 +10,10 @@ html, body {
 }
 
 body {
-  margin: 0;
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 mark {
@@ -23,19 +21,50 @@ mark {
   box-shadow: 0 0 10px 5px rgba(233, 30, 99, .2);
 }
 
-h2 {
-  font-size: 1.5em;
-  font-weight: 400;
-  margin: 0;
+
+
+h1, h2, h3, h4, h5{
+  font-weight: 500;
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+
+.text-wrap {
+  white-space: normal !important;
+}
+
+.text-truncate {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
 .text-align-center {
   text-align: center;
 }
+
 .text-align-left {
   text-align: left
 }
+
 .text-align-right {
   text-align: right;
 }
@@ -47,7 +76,6 @@ h2 {
 .font-minus-1 {
   font-size: .9em;
 }
-
 
 .font-weight-100 {
   font-weight: 100;

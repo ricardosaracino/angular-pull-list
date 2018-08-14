@@ -1,6 +1,6 @@
-<mat-card *ngIf="product" ngClass.xs="card-xs" (click)="goProductDetails()">
+<mat-card *ngIf="product" ngClass.xs="card-xs" ngClass.sm="card-sm" (click)="goProductDetails()">
   <mat-card-header>
-    <mat-card-title>{{product.name}}</mat-card-title>
+    <mat-card-title class="text-truncate">{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product?.company.name}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image
