@@ -50,6 +50,10 @@ export class CartService {
   }
 
 
+  public getItemCount(): number {
+    return this.products.length;
+  }
+
   public getCartTotal(): number {
     return this.products.reduce((a: number, p: Product) => {
       return a + p.customerPrice;

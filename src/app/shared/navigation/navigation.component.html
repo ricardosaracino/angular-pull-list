@@ -43,7 +43,7 @@
 
       <span style="padding-right: 15px">
         <button mat-icon-button routerLink="/cart">
-          <mat-icon matBadge="{{cart.products.length}}" matBadgeColor="accent">
+          <mat-icon matBadgeColor="accent" matBadge="{{cart.getItemCount()}}">
             shopping_cart
           </mat-icon>
         </button>
