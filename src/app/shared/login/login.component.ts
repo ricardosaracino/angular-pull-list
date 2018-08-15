@@ -9,12 +9,14 @@ import {AuthService} from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  public hide;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
 
-  login() {
+  public login() {
     this.auth.login();
   }
 }

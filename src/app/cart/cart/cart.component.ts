@@ -10,7 +10,7 @@ import {Product} from '../../models/Product';
 })
 export class CartComponent implements OnInit {
 
-  displayedColumns: string[] = ['remove', 'name', 'customerPrice'];
+  public displayedColumns: string[] = ['remove', 'name', 'customerPrice'];
 
   constructor(private cart: CartService) {
   }

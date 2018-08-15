@@ -18,7 +18,7 @@ export class LoggingInterceptor implements HttpInterceptor {
    * @param {HttpHandler} next
    * @returns {Observable<HttpEvent<any>>}
    */
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const started = Date.now();
 

@@ -12,7 +12,7 @@ import {MessageService} from '../../services/message.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product;
+  public product: Product;
 
   constructor(private cart: CartService, private message: MessageService, private route: ActivatedRoute) {
   }

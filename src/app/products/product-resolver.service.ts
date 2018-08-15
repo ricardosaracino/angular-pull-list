@@ -12,7 +12,7 @@ export class ProductResolver implements Resolve<Product> {
   constructor(private service: ProductService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product> {
     const id = route.paramMap.get('id');
 
     return this.service.getProduct(id).pipe(

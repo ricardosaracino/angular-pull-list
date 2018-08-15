@@ -12,7 +12,7 @@ import {MessageService} from '../../services/message.service';
 })
 export class ProductCardComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() public product: Product;
 
   constructor(private cart: CartService, private message: MessageService, private router: Router) {
   }

@@ -42,7 +42,7 @@
       <span class="mat-toolbar-spacer"></span>
 
       <span style="padding-right: 15px">
-        <button mat-icon-button routerLink="/cart">
+        <button mat-icon-button routerLink="/cart" i18n-aria-label aria-label="Shopping Cart">
           <mat-icon matBadgeColor="accent" matBadge="{{cart.getItemCount()}}">
             shopping_cart
           </mat-icon>
@@ -53,13 +53,13 @@
 
         <ng-container *ngIf="! auth.isAuthenticated; else doAppMenu">
           <button mat-flat-button color="primary" routerLink="/login">
-            <span i18n>LOGIN</span>
+            <span i18n>Login</span>
           </button>
         </ng-container>
 
         <ng-template #doAppMenu>
 
-          <button mat-icon-button [matMenuTriggerFor]="appMenu">
+          <button mat-icon-button [matMenuTriggerFor]="appMenu" i18n-aria-label aria-label="Account">
             <mat-icon>
               account_circle
             </mat-icon>

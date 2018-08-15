@@ -12,11 +12,11 @@ import {Product} from '../../models/Product';
 })
 export class ProductCardListComponent implements OnInit {
 
-  products: Array<Product> = [];
+  public products: Array<Product> = [];
 
-  pageCount = 4;
+  private pageCount = 4;
 
-  nextOffset = 0;
+  private nextOffset = 0;
 
   private processData = (data: ApiResponseData) => {
 
@@ -35,7 +35,7 @@ export class ProductCardListComponent implements OnInit {
     this.getArrivingNextWeek();
   }
 
-  getArrivingNextWeek(): void {
+  public getArrivingNextWeek(): void {
 
     this.service.getArrivingNextWeek(this.nextOffset, this.pageCount).subscribe(this.processData);
 
