@@ -10,7 +10,6 @@ import {CartCheckOutComponent} from './cart-check-out/cart-check-out.component';
 import {CartService} from './cart.service';
 import {CartRoutingModule} from './cart-routing';
 
-
 @NgModule({
   declarations: [
     CartComponent,

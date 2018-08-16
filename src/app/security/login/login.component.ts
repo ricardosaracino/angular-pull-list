@@ -19,4 +19,12 @@ export class LoginComponent implements OnInit {
   public login() {
     this.auth.login();
   }
+
+  public register() {
+    /* go to register page*/
+  }
+
+  public forgotPassword() {
+    /* go to password page*/
+  }
 }

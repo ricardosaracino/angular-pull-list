@@ -1,0 +1,26 @@
+<div style="max-width: 450px; display: block; margin: 0 auto; vertical-align: middle">
+
+  <mat-card>
+    <h1 i18n>Sign Up</h1>
+
+    <mat-form-field style="width: 100%">
+      <input type="email" matInput i18n-placeholder placeholder="Enter your email"
+
+             [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')" i18n>
+        Please enter a valid email address
+      </mat-error>
+
+      <mat-error *ngIf="emailFormControl.hasError('required')" i18n>
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-field-margin font-minus-1" i18n>You account will be created once you verify your email</div>
+
+    <div class="form-field-margin text-align-right">
+      <button mat-flat-button color="primary" (click)="signup()" i18n>Sign up</button>
+    </div>
+  </mat-card>
+</div>
