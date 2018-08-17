@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
+import {SecurityService} from '../security.service';
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -18,6 +20,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SignupComponent implements OnInit {
 
+  public email;
+
   public emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -25,13 +29,18 @@ export class SignupComponent implements OnInit {
 
   public matcher = new MyErrorStateMatcher();
 
-  constructor() {
+  constructor(private securityService: SecurityService) {
   }
 
   ngOnInit() {
   }
 
   public signup() {
-    return true;
+    this.securityService.postSignup(this.email).subscribe(
+      (d) => {
+        console.log(d);
+      }
+    );
+
   }
 }

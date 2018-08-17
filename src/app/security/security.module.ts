@@ -11,6 +11,7 @@ import {SignupComponent} from './signup/signup.component';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 
 import {SecurityRoutingModule} from './security-routing';
+import {SecurityService} from './security.service';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {SecurityRoutingModule} from './security-routing';
     SecurityRoutingModule
   ],
   providers: [
+    SecurityService
   ],
 })
 export class SecurityModule {

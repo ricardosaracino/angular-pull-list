@@ -39,6 +39,6 @@ export class ProductCardListComponent implements OnInit {
 
     this.service.getArrivingNextWeek(this.nextOffset, this.pageCount).subscribe(this.processData);
 
-    this.nextOffset = this.nextOffset +this.pageCount;
+    this.nextOffset = this.nextOffset + this.pageCount;
   }
 }
