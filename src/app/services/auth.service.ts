@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class AuthService {
 
-  isAuthenticated = false;
+  public isAuthenticated = false;
 
   public login() {
     this.isAuthenticated = true;

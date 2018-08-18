@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {catchError, map} from 'rxjs/internal/operators';
 import {Observable, of} from 'rxjs/index';
@@ -7,25 +7,46 @@ import {Observable, of} from 'rxjs/index';
 import {MessageService} from '../services/message.service';
 import {ApiResponse} from '../models/ApiResponse';
 
+import {environment} from '../../environments/environment';
+
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+});
 
 @Injectable()
 export class SecurityService {
-
-  private baseUrl = 'http://localhost/index.php/api';
 
   constructor(private http: HttpClient,
               private messageService: MessageService) {
   }
 
-  public postSignup(email: string): Observable<any> {
 
-    return this.http.post<any>(`${this.baseUrl}/security/signup`, {'email': email}).pipe(
+  public postEmailVerification(token: string): Observable<any> {
+
+    const body = {'emailVerificationToken': token};
+
+    return this.http.post<any>(`${environment.apiUrl}/security/verify_email`, body, {headers: headers}).pipe(
       map((response: ApiResponse) => {
         if (response.data && response.data.results && response.data.results instanceof Array) {
           return response.data.results.shift();
         }
       }),
-      catchError(this.handleError(`Signup ${email}`, []))
+      catchError(this.handleError(`Email Verification`, []))
+    );
+  }
+
+
+  public postSignup(email: string): Observable<any> {
+
+    const body = {'email': email, 'redirectUrl': `${location.origin}/email-verification`};
+
+    return this.http.post<any>(`${environment.apiUrl}/security/signup`, body, {headers: headers}).pipe(
+      map((response: ApiResponse) => {
+        if (response.data && response.data.results && response.data.results instanceof Array) {
+          return response.data.results.shift();
+        }
+      }),
+      catchError(this.handleError(`Signup`, []))
     );
   }
 

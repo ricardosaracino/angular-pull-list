@@ -27,7 +27,10 @@ export class ProductService {
     return this.http.get<Product>(`${this.productsUrl}${id}`).pipe(
       map((response: ApiResponse) => {
         if (response.data && response.data.results && response.data.results instanceof Array) {
-          return response.data.results.shift();
+
+          if (response.data.results.length !== 0) {
+            return response.data.results.shift();
+          }
         }
       }),
       catchError(this.handleError(`Getting Product ${id}`, []))
@@ -67,12 +70,14 @@ export class ProductService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (error: any): Observable<boolean> => {
 
       this.messageService.sendToFlash(`Error ${operation}`);
 
       // Let the app keep running by returning an empty result.
-      return of(result as T);
+      // return of(result as T);
+
+      return of(false);
     };
   }
 }

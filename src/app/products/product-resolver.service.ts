@@ -18,12 +18,12 @@ export class ProductResolver implements Resolve<Product> {
     return this.service.getProduct(id).pipe(
       take(1),
       map(product => {
-        if (product) {
-          return product;
-        } else { // id not found
+
+        if (!product) {
           this.router.navigate(['/']); // TODO
-          return null;
         }
+
+        return product; // to do should be Product or false
       })
     );
   }
