@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
@@ -9,10 +9,15 @@ import {ApiResponse} from '../models/ApiResponse';
 import {ApiResponseData} from '../models/ApiResponseData';
 import {Product} from '../models/Product';
 
+import {environment} from '../../environments/environment';
+
+const headers = new HttpHeaders({
+  'Content-Type': 'application/json',
+});
+
+
 @Injectable()
 export class ProductService {
-
-  private productsUrl = 'http://localhost/index.php/api/products/';
 
   constructor(private http: HttpClient,
               private messageService: MessageService) {
@@ -24,7 +29,7 @@ export class ProductService {
    */
   public getProduct(id: number | string): Observable<Product> {
 
-    return this.http.get<Product>(`${this.productsUrl}${id}`).pipe(
+    return this.http.get<Product>(`${environment.apiUrl}/products/${id}`).pipe(
       map((response: ApiResponse) => {
         if (response.data && response.data.results && response.data.results instanceof Array) {
 
@@ -55,8 +60,11 @@ export class ProductService {
       .set('offset', `${offset}`)
       .set('limit', `${limit}`);
 
-    return this.http.get<ApiResponseData>(this.productsUrl, {params: params}).pipe(
+    return this.http.get<ApiResponseData>(`${environment.apiUrl}/products`, {params: params}).pipe(
       map((response: ApiResponse) => {
+
+        console.log(response);
+
         return response.data;
       }),
       catchError(this.handleError(`Getting Arriving Next Week`, []))
@@ -77,7 +85,7 @@ export class ProductService {
       // Let the app keep running by returning an empty result.
       // return of(result as T);
 
-      return of(false);
+      return of(undefined);
     };
   }
 }

@@ -2,9 +2,13 @@
   <mat-card>
     <h1 i18n>Verification</h1>
 
-    <div class="form-field-margin font-minus-1" i18n>Your account has been created</div>
+    <h4 class="font-weight-400" i18n>Email verification in progress</h4>
 
-    <div class="form-field-margin font-minus-1" i18n>Error creating your account</div>
+    <div *ngIf="verified !== undefined" class="form-field-margin font-minus-1">
 
+      <div *ngIf="verified === true" i18n>Your account has been verified!</div>
+
+      <div *ngIf="verified === false" class="mat-error" i18n>Error verifying your account!</div>
+    </div>
   </mat-card>
 </div>

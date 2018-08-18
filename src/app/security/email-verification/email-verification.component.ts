@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 import {SecurityService} from '../security.service';
@@ -10,16 +10,20 @@ import {SecurityService} from '../security.service';
 })
 export class EmailVerificationComponent implements OnInit {
 
+  public verified = undefined;
+
   constructor(private securityService: SecurityService, private route: ActivatedRoute) {
   }
+
+
 
   ngOnInit() {
 
     const token = this.route.snapshot.paramMap.get('token');
 
-    this.securityService.postEmailVerification(token).subscribe(
-      (d) => {
-        console.log(d);
+    this.securityService.verifyRegistration(token).subscribe(
+      (verified) => {
+        this.verified = verified;
       }
     );
   }

@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
   }
 
   public signup() {
-    this.securityService.postSignup(this.email).subscribe(
+    this.securityService.signup(this.email).subscribe(
       (d) => {
         console.log(d);
       }
