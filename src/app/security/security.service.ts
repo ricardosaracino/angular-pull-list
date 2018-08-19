@@ -26,25 +26,21 @@ export class SecurityService {
     return this.http.post<any>(`${environment.apiUrl}/security/verify_registration`, {'token': token}, {headers: headers}).pipe(
       map((response: ApiResponse) => {
 
-        console.log(response);
-
         return response.status === 'success';
-
       }),
       catchError(this.handleError(`Email Verification`, []))
     );
   }
 
 
-  public signup(email: string): Observable<any> {
+  public signup(email: string, password: string): Observable<any> {
 
-    const body = {'email': email, 'redirectUrl': `${location.origin}/email-verification`};
+    const body = {'email': email, 'password': password, 'redirectUrl': `${location.origin}/email-verification`};
 
     return this.http.post<any>(`${environment.apiUrl}/security/register`, body, {headers: headers}).pipe(
       map((response: ApiResponse) => {
-        if (response.data && response.data.results && response.data.results instanceof Array) {
-          return response.data.results.shift();
-        }
+
+        return response.status === 'success';
       }),
       catchError(this.handleError(`Signup`, []))
     );

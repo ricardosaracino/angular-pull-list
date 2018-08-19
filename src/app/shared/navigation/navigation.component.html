@@ -41,6 +41,8 @@
 
       <span class="mat-toolbar-spacer"></span>
 
+
+
       <span style="padding-right: 15px">
         <button mat-icon-button routerLink="/cart" i18n-aria-label aria-label="Shopping Cart">
           <mat-icon matBadgeColor="accent" matBadge="{{cart.getItemCount()}}">
@@ -80,6 +82,13 @@
         </ng-template>
 
       </span>
+
+      <span style="padding-right: 15px">
+        <button mat-icon-button  i18n-aria-label aria-label="French">
+          Fr
+        </button>
+      </span>
+
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

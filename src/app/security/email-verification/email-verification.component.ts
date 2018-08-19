@@ -15,15 +15,13 @@ export class EmailVerificationComponent implements OnInit {
   constructor(private securityService: SecurityService, private route: ActivatedRoute) {
   }
 
-
-
   ngOnInit() {
 
     const token = this.route.snapshot.paramMap.get('token');
 
     this.securityService.verifyRegistration(token).subscribe(
-      (verified) => {
-        this.verified = verified;
+      (success) => {
+        this.verified = (true === success);
       }
     );
   }

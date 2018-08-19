@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../../services/auth.service';
 
@@ -9,22 +9,33 @@ import {AuthService} from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  public hide;
+  public username: string;
 
-  constructor(private auth: AuthService) { }
+  public password: string;
+
+  public hidePassword = true;
+
+  public loginSuccessful = undefined;
+
+  public sendingLogin = false;
+
+
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit() {
   }
 
   public login() {
-    this.auth.login();
-  }
 
-  public register() {
-    /* go to register page*/
-  }
+    this.sendingLogin = true;
 
-  public forgotPassword() {
-    /* go to password page*/
+    this.auth.login(this.username, this.password).subscribe(
+      (success) => {
+        this.loginSuccessful = (true === success);
+
+        this.sendingLogin = false;
+      }
+    );
   }
 }

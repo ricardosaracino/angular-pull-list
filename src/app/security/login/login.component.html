@@ -3,18 +3,28 @@
   <mat-card>
     <h1 i18n>Login</h1>
 
+    <div *ngIf="loginSuccessful === false" class="mat-error form-field-margin"
+         i18n>Login error occurred
+    </div>
+
     <mat-form-field style="width: 100%">
-      <input matInput i18n-placeholder placeholder="Enter your username">
+      <input matInput i18n-placeholder placeholder="Enter your username"
+             [(ngModel)]="username">
     </mat-form-field>
 
     <mat-form-field style="width: 100%">
-      <input matInput i18n-placeholder placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <input matInput i18n-placeholder placeholder="Enter your password"
+             [(ngModel)]="password" [type]="hidePassword ? 'password' : 'text'">
+
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+        {{hidePassword ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
     </mat-form-field>
+
 
     <div class="form-field-margin text-align-right">
-      <button mat-flat-button color="primary" (click)="login()" i18n>Login</button>
-      <button mat-flat-button color="primary" routerLink="/signup" i18n>Sign up</button>
+      <button mat-flat-button color="primary" (click)="login()" [disabled]="sendingLogin" i18n>Login</button>
+      <button mat-stroked-button color="primary" routerLink="/signup" i18n>Sign up</button>
     </div>
   </mat-card>
 </div>

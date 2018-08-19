@@ -14,7 +14,7 @@ export class Product {
   customerDiscountPrice: number;
   vendorPrice: number;
   releasedAt: string;
-  deadlineAt: string;
+  preOrderDeadlineAt: string;
 
   productType: ProductType;
   company?: Company;

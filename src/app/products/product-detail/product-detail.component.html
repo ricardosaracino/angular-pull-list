@@ -59,13 +59,13 @@
           </div>
         </ng-template>
 
-        <button mat-flat-button color="primary" (click)="addToCart()" i18n>
+        <button mat-flat-button color="primary" (click)="addToCart();" [disabled]="disableAddToCart" i18n>
           Add To Cart
         </button>
 
-        <div *ngIf="product.deadlineAt" class="font-minus-1">
+        <div *ngIf="product.preOrderDeadlineAt" class="font-minus-1">
           <ng-container i18n>Pre-Order Deadline:</ng-container>
-          {{product.deadlineAt|date}}
+          {{product.preOrderDeadlineAt|date}}
         </div>
 
         <div *ngIf="product.userPurchase" class="font-minus-1">
