@@ -6,23 +6,20 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+
+    <mat-toolbar color="primary" i18n>Menu</mat-toolbar>
+
     <mat-nav-list>
-      <a mat-list-item
-         i18n="product tab|New Last week"
-         routerLink="/new-last-week">
-        New Last Week
-      </a>
-      <a mat-list-item
-         i18n="product tab|Arriving This Week"
-         routerLink="/arriving-this-week">
-        Arriving This Week
-      </a>
-      <a mat-list-item
-         i18n="product tab|Coming Next Week"
-         routerLink="/coming-next-week">
-        Coming Next Week
-      </a>
+
+      <a mat-list-item routerLink="/new-last-week"
+         i18n>New Last Week</a>
+
+      <a mat-list-item routerLink="/arriving-this-week"
+         i18n>Arriving This Week</a>
+
+      <a mat-list-item routerLink="/coming-next-week"
+         i18n>Coming Next Week</a>
+
       <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
@@ -40,8 +37,6 @@
       <span>Pull List</span>
 
       <span class="mat-toolbar-spacer"></span>
-
-
 
       <span style="padding-right: 15px">
         <button mat-icon-button routerLink="/cart" i18n-aria-label aria-label="Shopping Cart">
@@ -84,7 +79,7 @@
       </span>
 
       <span style="padding-right: 15px">
-        <button mat-icon-button  i18n-aria-label aria-label="French">
+        <button mat-icon-button i18n-aria-label aria-label="French">
           Fr
         </button>
       </span>

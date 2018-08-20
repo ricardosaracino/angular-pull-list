@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
         this.loginSuccessful = (true === success);
 
         this.sendingLogin = false;
+
+        // TODO Redirect
       }
     );
   }

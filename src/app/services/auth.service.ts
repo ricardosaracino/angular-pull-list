@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
@@ -22,7 +22,6 @@ export class AuthService {
   public isAuthenticated = false;
 
 
-
   constructor(private http: HttpClient,
               private messageService: MessageService) {
   }
@@ -34,6 +33,9 @@ export class AuthService {
 
     return this.http.post<boolean>(`${environment.apiUrl}/security/login`, body, {headers: headers}).pipe(
       map((response: ApiResponse) => {
+
+
+        // TODO grab token
 
         return this.isAuthenticated = (response.status === 'success');
       }),
