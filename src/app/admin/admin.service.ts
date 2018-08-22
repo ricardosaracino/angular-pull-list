@@ -33,26 +33,26 @@ export class AdminService {
         }
       }),
       catchError(err => {
-          return of(undefined);
-        }
-      )
+        return of(undefined);
+      })
     );
   }
 
   /**
+   *
+   * @param {Company} company
    * @returns {Observable<boolean>}
    */
   public saveCompany(company: Company): Observable<boolean> {
 
-    return this.http.post<boolean>(`${environment.apiUrl}/companies/`, {'company': company}, {headers: headers}).pipe(
+    return this.http.post<boolean>(`${environment.apiUrl}/companies/`, {company: company}, {headers: headers}).pipe(
       map((response: ApiResponse) => {
 
         return response.status === 'success';
       }),
       catchError(err => {
-          return of(undefined);
-        }
-      )
+        return of(undefined);
+      })
     );
   }
 

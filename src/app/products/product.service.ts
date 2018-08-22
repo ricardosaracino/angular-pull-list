@@ -4,7 +4,6 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
-import {MessageService} from '../services/message.service';
 import {ApiResponse} from '../models/ApiResponse';
 import {ApiResponseData} from '../models/ApiResponseData';
 import {Product} from '../models/Product';
@@ -19,8 +18,7 @@ const headers = new HttpHeaders({
 @Injectable()
 export class ProductService {
 
-  constructor(private http: HttpClient,
-              private messageService: MessageService) {
+  constructor(private http: HttpClient) {
   }
 
   /**
@@ -38,25 +36,20 @@ export class ProductService {
           }
         }
       }),
-      catchError(this.handleError(`Getting Product ${id}`, []))
+      catchError(err => {
+        return of(undefined);
+      })
     );
   }
 
   /**
-   *
    * @param {number} offset
    * @param {number} limit
    * @returns {Observable<ApiResponseData>}
    */
   public getArrivingNextWeek(offset: number, limit: number): Observable<ApiResponseData> {
 
-    const today = new Date();
-
-    const nextweek_formatted = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7).toISOString().substring(0, 10);
-    const today_formatted = today.toISOString().substring(0, 10);
-
     const params = new HttpParams()
-    // .set('dateRange', `${today_formatted},${nextweek_formatted}`) // 2013-01-01,2013-01-02
       .set('offset', `${offset}`)
       .set('limit', `${limit}`);
 
@@ -65,25 +58,9 @@ export class ProductService {
 
         return response.data;
       }),
-      catchError(this.handleError(`Getting Arriving Next Week`, []))
+      catchError(err => {
+        return of(undefined);
+      })
     );
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<boolean> => {
-
-      this.messageService.sendToFlash(`Error ${operation}`);
-
-      // Let the app keep running by returning an empty result.
-      // return of(result as T);
-
-      return of(undefined);
-    };
   }
 }

@@ -7,9 +7,9 @@ import {Product} from '../models/Product';
 @Injectable()
 export class CartService {
 
-  products: Array<Product> = new Array();
+  public products: Array<Product> = new Array();
 
-  cartTotal = 0;
+  public cartTotal = 0;
 
   constructor() {
 

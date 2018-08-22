@@ -4,64 +4,70 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
-import {MessageService} from '../services/message.service';
 import {ApiResponse} from '../models/ApiResponse';
+import {AuthUser} from '../models/AuthUser';
 
 import {environment} from '../../environments/environment';
-import {ApiAuthResponse} from "../models/ApiAuthResponse";
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
 });
-
-class AuthUser {
-}
 
 @Injectable()
 export class AuthService {
 
   public isAuthenticated = false;
 
+  public user: AuthUser;
 
-  constructor(private http: HttpClient,
-              private messageService: MessageService) {
+  constructor(private http: HttpClient) {
+
+    const jsonUser = localStorage.getItem('authService.user');
+
+    if (jsonUser) {
+      this.user = JSON.parse(jsonUser);
+
+      this.isAuthenticated = true;
+    }
   }
 
-
+  /**
+   *
+   * @param {string} username
+   * @param {string} password
+   * @returns {Observable<boolean>}
+   */
   public login(username: string, password: string): Observable<boolean> {
 
     const body = {'username': username, 'password': password};
 
     return this.http.post<boolean>(`${environment.apiUrl}/security/login`, body, {headers: headers}).pipe(
-      map((response: ApiAuthResponse) => {
+      map((response: ApiResponse) => {
 
+        if (response.status !== 'success') {
+          return false;
+        }
 
-        // TODO grab token
+        if (response.data.user) {
+          this.user = response.data.user;
 
-        return this.isAuthenticated = (response.status === 'success');
+          localStorage.setItem('authService.user', JSON.stringify(this.user));
+
+          this.isAuthenticated = true;
+        }
+
+        return true;
       }),
-      catchError(this.handleError(`Login`, []))
+      catchError(err => {
+        return of(undefined);
+      })
     );
   }
 
+  /**
+   *
+   */
   public logout() {
     this.isAuthenticated = false;
-  }
-
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result ?: T) {
-    return (error: any): Observable<T> => {
-
-      this.messageService.sendToFlash(`Error ${operation}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
   }
 }
