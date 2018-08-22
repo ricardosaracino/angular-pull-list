@@ -1,4 +1,4 @@
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -16,6 +16,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {SecurityModule} from './security/security.module';
 import {CartModule} from './cart/cart.module';
 import {ProductModule} from './products/product.module';
+import {AdminModule} from './admin/admin.module';
 
 import {SnackBarComponent} from './shared/snack-bar/snack-bar.component';
 import {NavigationComponent} from './shared/navigation/navigation.component';
@@ -53,6 +54,7 @@ import {httpInterceptorProviders} from './http-interceptors/index';
     SecurityModule, // Order Matters for routing
     ProductModule,
     CartModule,
+    AdminModule,
     AppRoutingModule,
   ],
   providers: [

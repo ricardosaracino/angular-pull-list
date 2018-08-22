@@ -8,6 +8,7 @@ import {MessageService} from '../services/message.service';
 import {ApiResponse} from '../models/ApiResponse';
 
 import {environment} from '../../environments/environment';
+import {ApiAuthResponse} from "../models/ApiAuthResponse";
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -32,7 +33,7 @@ export class AuthService {
     const body = {'username': username, 'password': password};
 
     return this.http.post<boolean>(`${environment.apiUrl}/security/login`, body, {headers: headers}).pipe(
-      map((response: ApiResponse) => {
+      map((response: ApiAuthResponse) => {
 
 
         // TODO grab token

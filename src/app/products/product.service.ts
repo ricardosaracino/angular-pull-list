@@ -60,10 +60,8 @@ export class ProductService {
       .set('offset', `${offset}`)
       .set('limit', `${limit}`);
 
-    return this.http.get<ApiResponseData>(`${environment.apiUrl}/products`, {params: params}).pipe(
+    return this.http.get<ApiResponseData>(`${environment.apiUrl}/products/`).pipe(
       map((response: ApiResponse) => {
-
-        console.log(response);
 
         return response.data;
       }),

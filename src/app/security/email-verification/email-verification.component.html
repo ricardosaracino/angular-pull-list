@@ -1,15 +1,15 @@
-<div style="max-width: 450px; display: block; margin: 0 auto; vertical-align: middle">
-  <mat-card>
-    <h1 i18n>Verification</h1>
+<mat-card class="mat-card-centered">
 
-    <h4 class="font-weight-400" i18n>Email verification in progress</h4>
+  <h1 i18n>Verification</h1>
 
-    <div *ngIf="verified === true" class="form-field-margin font-minus-1"
-         i18n>Your account has been verified!
-    </div>
+  <h4 class="font-weight-400" i18n>Email verification in progress</h4>
 
-    <div *ngIf="verified === false" class="mat-error form-field-margin font-minus-1"
-         i18n>Error verifying your account!
-    </div>
-  </mat-card>
-</div>
+  <div *ngIf="verified === true" class="form-field-margin font-minus-1"
+       i18n>Your account has been verified!
+  </div>
+
+  <div *ngIf="verified === false" class="mat-error form-field-margin font-minus-1"
+       i18n>Error verifying your account!
+  </div>
+</mat-card>
+

@@ -2,11 +2,11 @@ import {ApiResponseData} from './ApiResponseData';
 
 export class ApiResponse {
 
-  readonly code: number;
+  public readonly code: number;
 
-  readonly status: string;
+  public readonly status: string;
 
-  readonly data?: ApiResponseData | any;
+  public readonly data?: ApiResponseData | any;
 
-  readonly message?: string;
+  public readonly message?: string;
 }

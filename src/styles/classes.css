@@ -1,10 +1,31 @@
 
+.mat-card-centered {
+  max-width: 450px;
+  display: block;
+  margin: 0 auto;
+}
+
+mat-card.mat-card-centered > mat-form-field {
+  width: 100%;
+}
+
+mat-card.mat-card-centered > mat-list > mat-list-item > div > a {
+  text-align: left;
+  width: 100%;
+}
+
+/** **/
 
 .form-field-margin {
   border-top: 0.84375em solid transparent; /* mat-form-field-infix */
   padding-bottom: 1.25em; /* mat-form-field-wrapper */
 }
 
+.form-field-margin button:not(last-child) {
+  margin-left: 5px;
+}
+
+/** **/
 
 .text-wrap {
   white-space: normal !important;
