@@ -67,6 +67,8 @@
           </button>
 
           <mat-menu #appMenu>
+            <span mat-menu-item class="font-minus-1">{{auth.user?.email}}</span>
+            <mat-divider></mat-divider>
             <button mat-menu-item>
               <span i18n>Order History</span>
             </button>
@@ -79,7 +81,6 @@
             </button>
           </mat-menu>
         </ng-template>
-
       </span>
 
       <span style="padding-right: 15px">
@@ -87,7 +88,6 @@
           Fr
         </button>
       </span>
-
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

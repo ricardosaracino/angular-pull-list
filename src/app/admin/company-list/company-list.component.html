@@ -3,13 +3,15 @@
   <h1 i18n>Companies</h1>
 
   <mat-list>
+    <mat-list-item>
+      <button mat-flat-button color="primary" routerLink="/admin/company"
+              i18n>Add New
+      </button>
+    </mat-list-item>
+
     <mat-list-item *ngFor="let company of companies" mat-button routerLink="/admin/company/{{company.id}}">
       <a mat-button routerLink="/admin/company/{{company.id}}">{{company.name}}</a>
     </mat-list-item>
   </mat-list>
-
-  <div class="form-field-margin text-align-right">
-    <button mat-flat-button color="primary" routerLink="/admin/company" i18n>Add New</button>
-  </div>
 
 </mat-card>

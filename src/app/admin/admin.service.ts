@@ -55,5 +55,4 @@ export class AdminService {
       })
     );
   }
-
 }

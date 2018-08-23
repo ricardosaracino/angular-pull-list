@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {Observable, of} from 'rxjs/index';
+import {interval, Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
 import {ApiResponse} from '../models/ApiResponse';
@@ -22,13 +22,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
 
-    const jsonUser = localStorage.getItem('authService.user');
+    this.validate();
 
-    if (jsonUser) {
-      this.user = JSON.parse(jsonUser);
-
-      this.isAuthenticated = true;
-    }
+    // Refresh login if we are using multiple tabs
+    interval(1000)
+      .subscribe(() => {
+        this.validate();
+      });
   }
 
   /**
@@ -66,8 +66,53 @@ export class AuthService {
 
   /**
    *
+   * @returns {Observable<boolean>}
    */
-  public logout() {
+  public logout(): Observable<boolean> {
+
+    return this.http.delete<boolean>(`${environment.apiUrl}/security/logout`).pipe(
+      map((response: ApiResponse) => {
+
+        if (response.status !== 'success') {
+          return false;
+        }
+
+        this.invalidate();
+
+        return true;
+      }),
+      catchError(err => {
+        return of(undefined);
+      })
+    );
+  }
+
+  /**
+   *
+   */
+  public validate(): void {
+    const lsUser = localStorage.getItem('authService.user');
+
+    if (lsUser) {
+      if (lsUser !== JSON.stringify(this.user)) {
+        this.user = JSON.parse(lsUser);
+        this.isAuthenticated = true;
+      }
+    } else {
+      if (this.user) {
+        this.user = undefined;
+        this.isAuthenticated = false;
+      }
+    }
+  }
+
+  /**
+   *
+   */
+  public invalidate(): void {
+    localStorage.removeItem('authService.user');
     this.isAuthenticated = false;
   }
+
+
 }

@@ -1,22 +1,22 @@
-import {Company} from './Comany';
+import {Company} from './Company';
 import {ProductType} from './ProductType';
 import {UserPurchase} from './UserPurchase';
 
 export class Product {
-  id: number;
-  name: string;
-  description: string;
-  details: string;
-  UPC: string;
-  imageUrl: string;
-  customerPrice: number;
-  customerDiscount: number;
-  customerDiscountPrice: number;
-  vendorPrice: number;
-  releasedAt: string;
-  preOrderDeadlineAt: string;
+  public id: number;
+  public name: string;
+  public description: string;
+  public details: string;
+  public UPC: string;
+  public imageUrl: string;
+  public customerPrice: number;
+  public customerDiscount: number;
+  public customerDiscountPrice: number;
+  public vendorPrice: number;
+  public releasedAt: string;
+  public preOrderDeadlineAt: string;
 
-  productType: ProductType;
-  company?: Company;
-  userPurchase?: UserPurchase;
+  public productType: ProductType;
+  public company?: Company;
+  public userPurchase?: UserPurchase;
 }

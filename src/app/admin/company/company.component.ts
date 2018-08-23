@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Company} from '../../models/Company';
 
 import {AdminService} from '../admin.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-company',
@@ -16,7 +17,7 @@ export class CompanyComponent implements OnInit {
 
   public sending = false;
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,6 +30,8 @@ export class CompanyComponent implements OnInit {
     this.adminService.saveCompany(this.company).subscribe((success: boolean) => {
       this.success = (true === success);
       this.sending = false;
+
+      this.router.navigate(['/admin/companies']);
     });
   }
 }
