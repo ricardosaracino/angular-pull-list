@@ -19,12 +19,10 @@ img {
   object-fit: cover;
 }
 
-
 mat-card.card-sm {
   max-width: calc(50% - 10px);
   min-width: calc(50% - 10px);
 }
-
 
 mat-card.card-xs {
   max-width: calc(100% - 10px);

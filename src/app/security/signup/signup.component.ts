@@ -8,7 +8,6 @@ import {CustomValidators} from 'ngx-custom-validators';
 import {SecurityService} from '../security.service';
 
 
-
 /** Error when invalid control is dirty, touched, or submitted. */
 export class AppErrorStateMatcher implements ErrorStateMatcher {
   public isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

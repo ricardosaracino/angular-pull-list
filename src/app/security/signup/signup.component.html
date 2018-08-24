@@ -26,7 +26,7 @@
   </mat-form-field>
 
 
-  <mat-form-field >
+  <mat-form-field>
     <input matInput i18n-placeholder placeholder="Enter your password"
            [(ngModel)]="password" [type]="hidePassword2 ? 'password' : 'text'" autocomplete="new-password"
            [formControl]="signupForm.get('password')" [errorStateMatcher]="matcher">
@@ -47,7 +47,7 @@
   </mat-form-field>
 
 
-  <mat-form-field >
+  <mat-form-field>
     <input matInput i18n-placeholder placeholder="Re-enter your password"
            [(ngModel)]="password2" [type]="hidePassword2 ? 'password' : 'text'" autocomplete="new-password"
            [formControl]="signupForm.get('password2')">

@@ -1,13 +1,11 @@
 
-
 table {
   width: 100%;
 }
 
-tr.mat-footer-row{
+tr.mat-footer-row {
   font-weight: 300;
 }
-
 
 .price-cell {
   width: 80px;

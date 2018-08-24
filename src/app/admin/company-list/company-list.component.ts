@@ -19,7 +19,7 @@ export class CompanyListComponent implements OnInit {
 
   ngOnInit() {
     this.adminService.getCompanies().subscribe((data: ApiResponseData) => {
-        this.companies = data.results;
+      this.companies = data.results;
     });
   }
 }

@@ -30,9 +30,15 @@
     </ng-container>
 
     <ng-container matColumnDef="customerPrice">
-      <th mat-header-cell *matHeaderCellDef ><div class="price-cell" i18n>Price</div></th>
-      <td mat-cell *matCellDef="let product"><div class="price-cell">{{product.customerPrice | currency}}</div></td>
-      <td mat-footer-cell *matFooterCellDef class="font-weight-500"><div class="price-cell">{{getCustomerTotal() | currency}}</div></td>
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="price-cell" i18n>Price</div>
+      </th>
+      <td mat-cell *matCellDef="let product">
+        <div class="price-cell">{{product.customerPrice | currency}}</div>
+      </td>
+      <td mat-footer-cell *matFooterCellDef class="font-weight-500">
+        <div class="price-cell">{{getCustomerTotal() | currency}}</div>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
