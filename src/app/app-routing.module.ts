@@ -1,10 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
+import {UnauthorizedComponent} from './error-docs/unauthorized/unauthorized.component';
+import {ForbiddenComponent} from './error-docs/forbidden/forbidden.component';
+import {NotFoundComponent} from './error-docs/not-found/not-found.component';
+
 
 const routes: Routes = [
-  {path: '**', component: PageNotFoundComponent}
+  {path: 'unauthorized', component: UnauthorizedComponent},
+  {path: 'forbidden', component: ForbiddenComponent},
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

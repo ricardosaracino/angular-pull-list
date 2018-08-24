@@ -21,7 +21,10 @@ import {AdminModule} from './admin/admin.module';
 import {SnackBarComponent} from './shared/snack-bar/snack-bar.component';
 import {NavigationComponent} from './shared/navigation/navigation.component';
 import {ProgressBarComponent} from './shared/progress-bar/progress-bar.component';
-import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
+
+import {UnauthorizedComponent} from './error-docs/unauthorized/unauthorized.component';
+import {ForbiddenComponent} from './error-docs/forbidden/forbidden.component';
+import {NotFoundComponent} from './error-docs/not-found/not-found.component';
 
 import {AuthService} from './services/auth.service';
 import {CartService} from './cart/cart.service';
@@ -31,13 +34,16 @@ import {MessageService} from './services/message.service';
 
 import {httpInterceptorProviders} from './http-interceptors/index';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     SnackBarComponent,
-    PageNotFoundComponent,
     ProgressBarComponent,
+    ForbiddenComponent,
+    UnauthorizedComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

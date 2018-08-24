@@ -52,7 +52,7 @@
 
       <span style="padding-right: 5px">
 
-        <ng-container *ngIf="! auth.isAuthenticated; else doAppMenu">
+        <ng-container *ngIf="! authService.isAuthenticated; else doAppMenu">
           <button mat-flat-button color="primary" routerLink="/login">
             <span i18n>Login</span>
           </button>
@@ -67,7 +67,7 @@
           </button>
 
           <mat-menu #appMenu>
-            <span mat-menu-item class="font-minus-1">{{auth.user?.email}}</span>
+            <span mat-menu-item class="font-minus-1">{{authService.user?.email}}</span>
             <mat-divider></mat-divider>
             <button mat-menu-item>
               <span i18n>Order History</span>
@@ -76,7 +76,7 @@
               <span i18n>Pending Pre Orders</span>
             </button>
             <mat-divider></mat-divider>
-            <button mat-menu-item (click)="auth.logout()">
+            <button mat-menu-item (click)="logout()">
               <span i18n>Logout</span>
             </button>
           </mat-menu>

@@ -1,11 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
+
+  constructor(private router: Router) {
+  }
 
   /**
    *
@@ -25,11 +30,15 @@ export class AuthInterceptor implements HttpInterceptor {
             // session expired (or not logged in ?)
             console.log('Status 401 unauthorized');
 
+            this.router.navigate(['unauthorized']);
+
             // clears local storage, redirects
             // this.authService.invalidate();
 
           } else if (error.status === 403) {
             console.log('Status 403 forbidden');
+
+            this.router.navigate(['forbidden']);
           }
 
           return throwError(error);

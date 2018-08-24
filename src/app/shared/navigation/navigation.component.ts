@@ -18,7 +18,14 @@ export class NavigationComponent {
       map(result => result.matches)
     );
 
-  constructor(public cart: CartService, public auth: AuthService,
+  constructor(public cart: CartService, public authService: AuthService,
               private breakpointObserver: BreakpointObserver) {
+  }
+
+  /**
+   *
+   */
+  public logout() {
+    this.authService.logout().subscribe();
   }
 }
