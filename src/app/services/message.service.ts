@@ -4,9 +4,9 @@ import {Subject} from 'rxjs/index';
 @Injectable()
 export class MessageService {
 
-  flash: Subject<any> = new Subject();
+  public flash: Subject<any> = new Subject();
 
-  sendToFlash(message) {
+  public sendToFlash(message) {
     this.flash.next(message);
   }
 }

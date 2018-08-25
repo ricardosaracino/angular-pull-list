@@ -22,9 +22,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
    * @param state
    */
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const url = state.url;
-
-    return this.handleAuth(url, route.data);
+    return this.handleAuth(state.url, route.data);
   }
 
   /**
@@ -39,9 +37,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
    * @param route
    */
   public canLoad(route: Route): boolean {
-    const url = `/${route.path}`;
-
-    return this.handleAuth(url, route.data);
+    return this.handleAuth(`/${route.path}`, route.data);
   }
 
   /**
@@ -56,15 +52,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       this.router.navigate(this.authService.loginRoute);
 
       return false;
-    }
-
-    if (data.roles instanceof Array) {
-
-      const res = this.authService.authUser.roles.filter(function (n) {
-        return data.roles.indexOf(n) > -1;
-      });
-
-      return res.length !== 0;
     }
 
     return true;

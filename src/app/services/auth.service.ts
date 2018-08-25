@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {interval, Observable, of} from 'rxjs/index';
+import {interval, Observable, of, ReplaySubject, Subject} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
 import {ApiResponse} from '../models/ApiResponse';
@@ -16,13 +16,17 @@ const headers = new HttpHeaders({
 @Injectable()
 export class AuthService {
 
-  public isAuthenticated = false;
 
   public redirectUrl = 'home'; // todo have this in config defaultUrl
 
   public readonly loginRoute = ['login']; // todo have this in config loginRoute
 
   public authUser: AuthUser;
+
+  public isAuthenticated = false; // hasRoleUser
+
+  public hasRoleAdmin = false; // hasRoleUser as well
+
 
   constructor(private http: HttpClient) {
 
@@ -58,6 +62,8 @@ export class AuthService {
           localStorage.setItem('authService.authUser', JSON.stringify(this.authUser));
 
           this.isAuthenticated = true;
+
+          this.hasRoleAdmin = (this.authUser.roles.indexOf('ROLE_ADMIN') > -1);
         }
 
         return true;
@@ -100,7 +106,8 @@ export class AuthService {
     if (lsUser) {
       if (lsUser !== JSON.stringify(this.authUser)) {
         this.authUser = JSON.parse(lsUser);
-        this.isAuthenticated = true;
+        this.isAuthenticated = true; // isUser
+        this.hasRoleAdmin = (this.authUser.roles.indexOf('ROLE_ADMIN') > -1);
       }
     } else {
       if (this.authUser) {
@@ -117,17 +124,4 @@ export class AuthService {
     localStorage.removeItem('authService.authUser');
     this.isAuthenticated = false;
   }
-
-  /**
-   *
-   */
-  public hasRoleAdmin() {
-
-    if (this.authUser) {
-      return this.authUser.roles.filter(function (role) {
-        return role === 'ROLE_ADMIN';
-      }).length > 0;
-    }
-  }
-
 }

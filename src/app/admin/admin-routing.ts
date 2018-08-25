@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AuthGuard} from '../guards/auth.gaurd';
+import {RoleGuard} from '../guards/role-guard.service';
 
 import {CompanyComponent} from './company/company.component';
 import {CompanyListComponent} from './company-list/company-list.component';
@@ -9,8 +9,8 @@ import {CompanyListComponent} from './company-list/company-list.component';
 const adminRoutes: Routes = [
   {
     path: 'admin',
-    canActivate: [AuthGuard],
-    data: {roles: ['ROLE_ADMIN']},
+    canActivate: [RoleGuard],
+    data: {role: ['ROLE_ADMIN']},
     children: [
       {
         path: 'companies',
@@ -35,7 +35,7 @@ const adminRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [AuthGuard]
+  providers: [RoleGuard]
 })
 export class AdminRoutingModule {
 }

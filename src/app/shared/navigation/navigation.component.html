@@ -23,7 +23,7 @@
          i18n>Coming Next Week
       </a>
 
-      <ng-template *ngIf="authService.hasRoleAdmin()">
+      <span *ngIf="authService.hasRoleAdmin">
 
         <mat-divider></mat-divider>
 
@@ -31,7 +31,7 @@
            i18n>Companies
         </a>
 
-      </ng-template>
+      </span>
 
     </mat-nav-list>
   </mat-sidenav>

@@ -32,7 +32,8 @@ import {LoaderService} from './services/loader.service';
 import {LoggerService} from './services/logger.service';
 import {MessageService} from './services/message.service';
 
-import {AuthGuard} from './guards/auth.gaurd';
+import {AuthGuard} from './guards/auth-guard.sercice';
+import {RoleGuard} from './guards/role-guard.service';
 import {httpInterceptorProviders} from './http-interceptors';
 
 
@@ -67,6 +68,7 @@ import {httpInterceptorProviders} from './http-interceptors';
   providers: [
     AuthService,
     AuthGuard,
+    RoleGuard,
     CartService,
     LoaderService,
     LoggerService,
