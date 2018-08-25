@@ -32,7 +32,8 @@ import {LoaderService} from './services/loader.service';
 import {LoggerService} from './services/logger.service';
 import {MessageService} from './services/message.service';
 
-import {httpInterceptorProviders} from './http-interceptors/index';
+import {AuthGuard} from './guards/auth.gaurd';
+import {httpInterceptorProviders} from './http-interceptors';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import {httpInterceptorProviders} from './http-interceptors/index';
   ],
   providers: [
     AuthService,
+    AuthGuard,
     CartService,
     LoaderService,
     LoggerService,

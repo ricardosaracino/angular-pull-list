@@ -23,11 +23,15 @@
          i18n>Coming Next Week
       </a>
 
-      <mat-divider></mat-divider>
+      <ng-template *ngIf="authService.hasRoleAdmin()">
 
-      <a mat-list-item routerLink="/admin/companies"
-         i18n>Companies
-      </a>
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="/admin/companies"
+           i18n>Companies
+        </a>
+
+      </ng-template>
 
     </mat-nav-list>
   </mat-sidenav>
@@ -71,7 +75,7 @@
           </button>
 
           <mat-menu #appMenu>
-            <span mat-menu-item class="font-minus-1">{{authService.user?.email}}</span>
+            <span mat-menu-item class="font-minus-1">{{authService.authUser?.email}}</span>
             <mat-divider></mat-divider>
             <button mat-menu-item>
               <span i18n>Order History</span>

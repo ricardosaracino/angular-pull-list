@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {AuthService} from '../../services/auth.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,23 +21,23 @@ export class LoginComponent implements OnInit {
   public sendingLogin = false;
 
 
-  constructor(private auth: AuthService) {
+  constructor(private authService: AuthService, private readonly router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   public login() {
 
     this.sendingLogin = true;
 
-    this.auth.login(this.username, this.password).subscribe(
+    this.authService.login(this.username, this.password).subscribe(
       (success) => {
         this.loginSuccessful = (true === success);
 
         this.sendingLogin = false;
 
-        // TODO Redirect
+        this.router.navigate([this.authService.redirectUrl]);
       }
     );
   }

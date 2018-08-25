@@ -18,7 +18,11 @@ export class AuthService {
 
   public isAuthenticated = false;
 
-  public user: AuthUser;
+  public redirectUrl = 'home'; // todo have this in config defaultUrl
+
+  public readonly loginRoute = ['login']; // todo have this in config loginRoute
+
+  public authUser: AuthUser;
 
   constructor(private http: HttpClient) {
 
@@ -49,9 +53,9 @@ export class AuthService {
         }
 
         if (response.data.user) {
-          this.user = response.data.user;
+          this.authUser = response.data.user;
 
-          localStorage.setItem('authService.user', JSON.stringify(this.user));
+          localStorage.setItem('authService.authUser', JSON.stringify(this.authUser));
 
           this.isAuthenticated = true;
         }
@@ -91,16 +95,16 @@ export class AuthService {
    *
    */
   public validate(): void {
-    const lsUser = localStorage.getItem('authService.user');
+    const lsUser = localStorage.getItem('authService.authUser');
 
     if (lsUser) {
-      if (lsUser !== JSON.stringify(this.user)) {
-        this.user = JSON.parse(lsUser);
+      if (lsUser !== JSON.stringify(this.authUser)) {
+        this.authUser = JSON.parse(lsUser);
         this.isAuthenticated = true;
       }
     } else {
-      if (this.user) {
-        this.user = undefined;
+      if (this.authUser) {
+        this.authUser = undefined;
         this.isAuthenticated = false;
       }
     }
@@ -110,9 +114,20 @@ export class AuthService {
    *
    */
   public invalidate(): void {
-    localStorage.removeItem('authService.user');
+    localStorage.removeItem('authService.authUser');
     this.isAuthenticated = false;
   }
 
+  /**
+   *
+   */
+  public hasRoleAdmin() {
+
+    if (this.authUser) {
+      return this.authUser.roles.filter(function (role) {
+        return role === 'ROLE_ADMIN';
+      }).length > 0;
+    }
+  }
 
 }
