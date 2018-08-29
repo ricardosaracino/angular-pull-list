@@ -26,7 +26,7 @@ export class AdminService {
    */
   public getCompanies(): Observable<ApiResponseData> {
 
-    return this.http.get<ApiResponseData>(`${environment.apiUrl}/companies/`).pipe(
+    return this.http.get<ApiResponseData>(`${environment.apiUrl}/admin/companies`).pipe(
       map((response: ApiResponse) => {
         if (response.data) {
           return response.data;
@@ -45,7 +45,7 @@ export class AdminService {
    */
   public saveCompany(company: Company): Observable<boolean> {
 
-    return this.http.post<boolean>(`${environment.apiUrl}/companies/`, {company: company}, {headers: headers}).pipe(
+    return this.http.post<boolean>(`${environment.apiUrl}/admin/companies`, {company: company}, {headers: headers}).pipe(
       map((response: ApiResponse) => {
 
         return response.status === 'success';

@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit {
 
         this.sendingLogin = false;
 
-        this.router.navigate([this.authService.redirectUrl]);
+        if (this.loginSuccessful) {
+          this.router.navigate([this.authService.redirectUrl]);
+        }
       }
     );
   }

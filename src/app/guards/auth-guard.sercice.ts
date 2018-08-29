@@ -47,6 +47,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   private handleAuth(url: string, data): boolean {
     if (!this.authService.isAuthenticated) {
 
+      // todo this could be all done at once
       this.authService.redirectUrl = url;
 
       this.router.navigate(this.authService.loginRoute);

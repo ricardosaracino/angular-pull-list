@@ -4,7 +4,7 @@ import {
   CanActivate,
   CanActivateChild,
   CanLoad,
-  Route,
+  Route, Router,
   RouterStateSnapshot
 } from '@angular/router';
 
@@ -13,7 +13,7 @@ import {AuthService} from '../services/auth.service';
 @Injectable()
 export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private readonly authService: AuthService) {
+  constructor(private readonly authService: AuthService, private readonly router: Router) {
   }
 
   /**
@@ -45,6 +45,15 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
    */
   private handleAuth(url: string, data: any): boolean {
 
+    if (!this.authService.isAuthenticated) {
+
+      this.authService.redirectUrl = url;
+
+      this.router.navigate(this.authService.loginRoute);
+
+      return false;
+    }
+
     if (data.role instanceof Array && this.authService.authUser) {
 
       return this.authService.authUser.roles.filter(function (n) {
@@ -56,6 +65,6 @@ export class RoleGuard implements CanActivate, CanActivateChild, CanLoad {
       return this.authService.authUser.roles.indexOf(data.role) > -1;
     }
 
-    return false;
+    return false; // todo
   }
 }

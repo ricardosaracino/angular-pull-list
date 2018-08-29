@@ -122,6 +122,8 @@ export class AuthService {
    */
   public invalidate(): void {
     localStorage.removeItem('authService.authUser');
+    this.authUser = undefined;
     this.isAuthenticated = false;
+    this.hasRoleAdmin = false;
   }
 }

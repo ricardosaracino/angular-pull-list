@@ -9,9 +9,12 @@
       </button>
     </mat-list-item>
 
-    <mat-list-item *ngFor="let company of companies" mat-button routerLink="/admin/company/{{company.id}}">
-      <a mat-button routerLink="/admin/company/{{company.id}}">{{company.name}}</a>
-    </mat-list-item>
+    <ng-container *ngFor="let company of companies;  let last = last">
+      <mat-list-item>
+        <a mat-button routerLink="/admin/company/{{company.id}}">{{company.name}}</a>
+      </mat-list-item>
+      <mat-divider *ngIf="!last"></mat-divider>
+    </ng-container>
   </mat-list>
 
 </mat-card>

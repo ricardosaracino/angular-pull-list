@@ -29,6 +29,7 @@
               "src/styles/sanitize.css",
               "src/styles/classes.css",
               "src/themes/theme.scss",
+              "src/styles/material.css",
               "src/styles/styles.css"
             ],
             "scripts": []

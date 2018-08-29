@@ -58,7 +58,7 @@ export class SignupComponent implements OnInit {
   constructor(private securityService: SecurityService, private router: Router) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
   public signup() {

@@ -4,11 +4,12 @@ import {Router} from '@angular/router';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
+import {AuthService} from "../services/auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   /**
@@ -26,6 +27,11 @@ export class AuthInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse | any) => {
 
           if (error.status === 401) {
+
+            // todo this could be all done at once
+            this.authService.invalidate();
+
+            // this.authService.redirectUrl = url;
 
             this.router.navigate(['unauthorized']);
 

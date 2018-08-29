@@ -15,7 +15,7 @@ export class EmailVerificationComponent implements OnInit {
   constructor(private securityService: SecurityService, private route: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
 
     const token = this.route.snapshot.paramMap.get('token');
 

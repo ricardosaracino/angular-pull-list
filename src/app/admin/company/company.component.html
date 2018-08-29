@@ -3,13 +3,13 @@
   <h1 i18n>Company</h1>
 
   <mat-form-field>
-    <input matInput i18n-placeholder placeholder="Enter company name"
+    <input matInput required i18n-placeholder placeholder="Enter company name"
            [(ngModel)]="company.name">
   </mat-form-field>
 
   <mat-form-field>
-  <textarea matInput i18n-placeholder placeholder="Enter company descriptions"
-            [(ngModel)]="company.description"></textarea>
+    <textarea matInput matTextareaAutosize i18n-placeholder placeholder="Enter company descriptions"
+              [(ngModel)]="company.description"></textarea>
   </mat-form-field>
 
   <div class="form-field-margin text-align-right">
