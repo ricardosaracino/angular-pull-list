@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
-import {AuthService} from "../services/auth.service";
+
+import {AuthService} from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -37,7 +38,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
           } else if (error.status === 403) {
 
-            this.router.navigate(['forbidden']);
+            if (this.router.url !== '/login') {
+              this.router.navigate(['forbidden']);
+            }
           }
 
           return throwError(error);

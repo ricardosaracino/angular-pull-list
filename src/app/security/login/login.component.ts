@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
+import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,9 +15,9 @@ export class LoginComponent implements OnInit {
 
   public hidePassword = true;
 
-  public loginSuccessful = undefined;
+  public successful = undefined;
 
-  public sendingLogin = false;
+  public sending = false;
 
 
   constructor(private authService: AuthService, private readonly router: Router) {
@@ -29,15 +28,13 @@ export class LoginComponent implements OnInit {
 
   public login() {
 
-    this.sendingLogin = true;
+    this.sending = true;
 
     this.authService.login(this.username, this.password).subscribe(
       (success) => {
-        this.loginSuccessful = (true === success);
-
-        this.sendingLogin = false;
-
-        if (this.loginSuccessful) {
+        this.successful = (true === success);
+        this.sending = false;
+        if (this.successful) {
           this.router.navigate([this.authService.redirectUrl]);
         }
       }

@@ -2,12 +2,12 @@
 
   <h1 i18n>Company</h1>
 
-  <mat-form-field>
+  <mat-form-field class="full-width">
     <input matInput required i18n-placeholder placeholder="Enter company name"
            [(ngModel)]="company.name">
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="full-width">
     <textarea matInput matTextareaAutosize i18n-placeholder placeholder="Enter company descriptions"
               [(ngModel)]="company.description"></textarea>
   </mat-form-field>
@@ -17,6 +17,5 @@
 
     <button mat-stroked-button color="primary" routerLink="/admin/companies" i18n>Cancel</button>
   </div>
-
 </mat-card>
 

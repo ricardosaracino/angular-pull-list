@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {interval, Observable, of, ReplaySubject, Subject} from 'rxjs/index';
+import {interval, Observable, of} from 'rxjs/index';
 import {catchError, map} from 'rxjs/internal/operators';
 
 import {ApiResponse} from '../models/ApiResponse';

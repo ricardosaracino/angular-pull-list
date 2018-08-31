@@ -4,7 +4,8 @@ import {
   CanActivate,
   CanActivateChild,
   CanLoad,
-  Route, Router,
+  Route,
+  Router,
   RouterStateSnapshot
 } from '@angular/router';
 

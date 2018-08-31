@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
@@ -30,9 +29,9 @@ export class SignupComponent implements OnInit {
   public hidePassword = true;
   public hidePassword2 = true;
 
-  public signupSuccessful = undefined;
+  public successful = undefined;
 
-  public sendingSignup = false;
+  public sending = false;
 
   public matcher = new AppErrorStateMatcher();
 
@@ -55,7 +54,7 @@ export class SignupComponent implements OnInit {
     ]),
   });
 
-  constructor(private securityService: SecurityService, private router: Router) {
+  constructor(private securityService: SecurityService) {
   }
 
   public ngOnInit() {
@@ -63,13 +62,12 @@ export class SignupComponent implements OnInit {
 
   public signup() {
 
-    this.sendingSignup = true;
+    this.sending = true;
 
     this.securityService.signup(this.email, this.password).subscribe(
       (success) => {
-        this.signupSuccessful = (true === success);
-
-        this.sendingSignup = false;
+        this.successful = (true === success);
+        this.sending = false;
       }
     );
   }

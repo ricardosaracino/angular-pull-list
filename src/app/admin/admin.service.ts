@@ -39,6 +39,26 @@ export class AdminService {
   }
 
   /**
+   * @returns {Observable<ApiResponseData>}
+   */
+  public getCompany(id: string | number): Observable<Company> {
+
+    return this.http.get<Company>(`${environment.apiUrl}/admin/companies/${id}`).pipe(
+      map((response: ApiResponse) => {
+        if (response.data && response.data.results && response.data.results instanceof Array) {
+
+          if (response.data.results.length !== 0) {
+            return response.data.results.shift();
+          }
+        }
+      }),
+      catchError(err => {
+        return of(undefined);
+      })
+    );
+  }
+
+  /**
    *
    * @param {Company} company
    * @returns {Observable<boolean>}

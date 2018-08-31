@@ -1,11 +1,9 @@
 
-
 textarea.cdk-textarea-autosize{
   overflow-y: hidden !important;
+  resize: vertical;
 }
-
 
 mat-radio-group {
   margin: 0.67em 0;
 }
-

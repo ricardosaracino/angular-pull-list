@@ -1,27 +1,33 @@
 <mat-card class="mat-card-centered">
-  <h1 i18n>Login</h1>
 
-  <div *ngIf="loginSuccessful === false" class="mat-error form-field-margin"
-       i18n>Login error occurred
-  </div>
+  <form>
 
-  <mat-form-field>
-    <input matInput i18n-placeholder placeholder="Enter your username"
-           [(ngModel)]="username">
-  </mat-form-field>
+    <h1 i18n>Login</h1>
 
-  <mat-form-field>
-    <input matInput i18n-placeholder placeholder="Enter your password"
-           [(ngModel)]="password" [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password">
+    <div *ngIf="successful === false" class="mat-error form-field-margin"
+         i18n>Login error occurred
+    </div>
 
-    <mat-icon matSuffix (click)="hidePassword = !hidePassword">
-      {{hidePassword ? 'visibility_off' : 'visibility'}}
-    </mat-icon>
-  </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput i18n-placeholder placeholder="Enter your username"
+             [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
 
-  <div class="form-field-margin text-align-right">
-    <button mat-flat-button color="primary" (click)="login()" [disabled]="sendingLogin" i18n>Login</button>
-    <button mat-stroked-button color="primary" routerLink="/signup" i18n>Sign up</button>
-  </div>
+    <mat-form-field class="full-width">
+      <input matInput i18n-placeholder placeholder="Enter your password"
+             [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
+             [type]="hidePassword ? 'password' : 'text'"
+             autocomplete="current-password">
+
+      <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+        {{hidePassword ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+    </mat-form-field>
+
+    <div class="form-field-margin text-align-right">
+      <button mat-flat-button color="primary" (click)="login()" [disabled]="sending" i18n>Login</button>
+      <button mat-stroked-button color="primary" routerLink="/signup" i18n>Sign up</button>
+    </div>
+  </form>
 </mat-card>
 

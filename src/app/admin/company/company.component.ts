@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Company} from '../../models/Company';
-
+import {ActivatedRoute, Router} from '@angular/router';
 import {AdminService} from '../admin.service';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-company',
@@ -17,10 +16,28 @@ export class CompanyComponent implements OnInit {
 
   public sending = false;
 
-  constructor(private adminService: AdminService, private router: Router) {
+  constructor(private adminService: AdminService, private router: Router, private routeSnapshot: ActivatedRoute) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
+
+    this.routeSnapshot.params.subscribe(params => {
+
+      if (params['id']) {
+        this.get(params['id']);
+      }
+    });
+  }
+
+  public get(id: string) {
+
+    this.adminService.getCompany(id).subscribe((company: Company) => {
+
+      if (company) {
+        this.company = company;
+      }
+      // TODO else error
+    });
   }
 
   public save() {
@@ -30,8 +47,9 @@ export class CompanyComponent implements OnInit {
     this.adminService.saveCompany(this.company).subscribe((success: boolean) => {
       this.success = (true === success);
       this.sending = false;
-
-      this.router.navigate(['/admin/companies']);
+      if (this.success) {
+        this.router.navigate(['/admin/companies']);
+      }
     });
   }
 }
